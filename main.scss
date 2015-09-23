@@ -1,0 +1,136 @@
+html, body, h1, h2, h3, h4, h5, li, ul, ol, input, select, div, p, button, span{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+    font-family: "Open Sans",Sans-serif,Helvetica,Arial,sans-serif;
+    list-style-type: none;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: url(images/black_background.jpg);
+	background-size: 100% 100%;
+}
+
+@keyframes fallIn {
+    0%{
+    	transform: rotateY(500deg) rotateX(0deg) scale(0);
+    	background: hsla(195, 65%, 0%, 0.5);
+    	box-shadow: 0 0 10px 0px #000, inset 0 0 20px 0 #000;
+
+
+    }
+    90%{
+    	box-shadow: 0 0 10px 0px #000, inset 0 0 20px 0 #000;
+    }
+    100%{
+    	transform: rotateY(0deg) rotateX(0deg) scale(1);
+    	box-shadow: 0 0 20px 5px #000, inset 0 0 5px 0 #000;
+    	background: hsla(195, 65%, 0%, 0.3);
+    }
+}
+.fall-in {
+    -webkit-animation: fallIn 2s forwards;
+    animation: fallIn 2s forwards;
+}
+
+@keyframes fadeOut {
+    from{opacity: 1}
+
+    to{opacity: 0.2}
+}
+.fade-out {
+    -webkit-animation: fadeOut 0.5s forwards;
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes stage {
+    from{
+
+    }
+
+    to{
+    	box-shadow: 0 0 20px 5px #000, inset 0 0 5px 0 #999;
+    	background: hsla(195, 65%, 0%, 0.3);
+    }
+}
+.staged {
+    -webkit-animation: stage 1s forwards;
+    animation: stage 1s forwards;
+}
+
+ul {
+	position: absolute;
+	top: 50%;
+	margin-top: -100px;
+	width: 100%;
+	text-align: center;
+	display: block;
+	@media screen and (max-width: 800px) {
+		top: 170px;
+	}
+}
+
+li {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	text-align: center;
+	margin: 10px;
+	z-index: 1;
+	@media screen and (max-width: 800px) {
+		display: block;
+		margin-left: 50%;
+		left: -100px;
+	}
+}
+
+.parent-3d {
+    top: 50%;
+    left: 50%;
+    perspective: 200px;
+    z-index: 1;
+}
+.child-3d {
+		opacity: 0;
+		width: 200px;
+		height: 200px;
+	    position: relative;
+	    background: hsla(195, 65%, 0%, 0.3);
+	    box-shadow: 0 0 20px 5px #000, inset 0 0 5px 0 #000;
+	    border-radius: 3px;
+	    z-index: 1;
+	    &:hover {
+	    	//background: #0082a3;
+	    	transition: background .2s ease-in
+	    }
+	    p {
+	    	position: relative;
+			color: #ddd;
+			top: 70px;
+			font-size: 50px;
+			font-family: "Open Sans",Sans-serif,Helvetica,Arial,sans-serif;
+			pointer-events: none;
+			text-shadow: 0 0 5px #000;
+		}
+	}
+
+
+
+h1 {
+	color: #fff;
+	font-size: 5px;
+	text-align: center;
+	padding: 20px 0 30px 0;
+}
+p {
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+}
