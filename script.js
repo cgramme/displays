@@ -1,7 +1,18 @@
+$(window).load(function(){
+    listIn($('li .child-3d'), 0, 1000);
+});
 
 $(document).ready(function(){
 
-    function listIn (list, index, interval) {
+    $('li').on('click', function(){
+        $('.child-3d').addClass('fade-out');
+    });
+
+    
+
+});
+
+function listIn (list, index, interval) {
     if(index < list.length) {
     $(list[index++]).addClass('fall-in').css({'opacity':'1'}).delay(2000).queue(function(next){
             $(this).removeClass('fall-in');
@@ -12,14 +23,6 @@ $(document).ready(function(){
         }, interval);
       }
     }
-
-    $('li').on('click', function(){
-        $('.child-3d').addClass('fade-out');
-    });
-
-    listIn($('li .child-3d'), 0, 1000);
-
-});
 
 var boxSize = 200;
 var divPos = {};
