@@ -9,14 +9,131 @@
 	<body>
 		<div class="page-wrap">
 			<div class="header">
-			<h1>Pro Site</h1>
+			<h1>Front End Web Tricks</h1>
 			</div>
 			<div class="main-content">
+				<h2>Animated and Interactive Element/List</h2>
+				<h3>Using JQuery/Javascript and CSS transform property to make an animated and interactive element/list.</h3>
+				<h4><span>Note:</span> Using the CSS transform property will not work in some older browsers. <a href="http://caniuse.com/#search=transform">Click here for compatibility information.</a></h4>
+				<p class="indent">First we need to add the HTML element that we would like to animate. I used a "ul" element and wanted any content within the "li" to be animated. We need to create a parent item for our animated element, I used a class of "parent-3d" for my parent "div" element. After we have the parent we need to add our animated element within our "parent-3d" class.</p>
+				<p class="indent">In order to get a 3d effect on our element using the CSS transform property we need to add a "perspective: value;" to our "parent-3d" class. The value should be set to the size of the element being animated</p>
 				<ul>
-					<li><div class="parent-3d"><div class="child-3d"><P>SKATE</P></div></div></li>
-					<li><div class="parent-3d"><div class="child-3d"><p>SURF</p></div></div></li>
-					<li><div class="parent-3d"><div class="child-3d"><p>SNOW</p></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
 				</ul>
+			</div>
+			<div class="code">
+				<h3>HTML</h3>
+				<div class="code-text">
+					<pre>&ltul&gt
+   &ltli&gt&ltdiv class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/div&gt&lt;/li&gt
+   &ltli&gt&ltdiv class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/div&gt&lt;/li&gt
+   &ltli&gt&ltdiv class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/div&gt&lt;/li&gt
+&lt;/ul&gt
+					</pre>
+				</div>
+			</div>
+			<div class="code">
+				<h3>CSS/SASS</h3>
+				<div class="code-text">
+					<pre>.parent-3d {
+    perspective: 200px;
+}
+
+.child-3d {
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    background: hsla(195, 65%, 0%, 0.5);
+    box-shadow: 0 0 20px 5px #000, inset 0 0 5px 0 #000;
+    border-radius: 3px;
+    z-index: 1;
+}					</pre>
+				</div>
+			</div>
+			<div class="code">
+				<h3>JQuery/Javascript</h3>
+				<p class="indent">Since I have my class "parent-3d" element and my class "child-3d" element inside a "li" I need to add z-index values to keep our current hovered element on top of other elements. I will then reset the value of the other "li" elements triggered when they are not hovered.</p>
+				<div class="code-text">
+					<pre>var boxSize=200;	<span>//boxSize should be set to the size of your animated element.</span>
+var scaleSize=1.15; 	<span>//scaleSize should be set to desired amount of zoom on hover.</span>
+var scale3d=30;		<span>//scale3d should be set to the amount of 3d effect on cursor hover.</span>
+$(document).mousemove(function(e){
+    var divPos={};
+    var offset;
+    var divXpos;
+    var divYpos;
+    offset = $(e.target).parent().offset();
+    if($(e.target).parent().attr('class') == "parent-3d"){
+         divPos = {
+            left: e.pageX - offset.left,
+            top: e.pageY - offset.top
+        };
+        if(divPos.left&ltboxSize && divPos.top&ltboxSize){
+            if(divPos.left>0 && divPos.top>0){
+                if(divPos.top>boxSize/2){
+                    divXpos = (divPos.top-boxSize/2)/(boxSize/30);
+                    divYpos = -(divPos.left-boxSize/2)/(boxSize/30);
+                }else{
+                    divXpos = -((boxSize/2)-divPos.top)/(boxSize/30);
+                    divYpos = ((boxSize/2)-divPos.left)/(boxSize/30);
+                }
+                $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
+                $(e.target).parents('li').css({'z-index':'10'});	<span>//Set z-index greater than the default value.</span>
+                $(e.target).css({'transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')','opacity':'1'});
+            }else{
+                $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
+                $('li').css({'z-index':'1'});	<span>//Set z-index value back to the default value.</span>
+            }
+        }else{
+            $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
+            $('li').css({'z-index':'1'});	<span>//Set z-index value back to the default value.</span>
+        }
+    }else{
+        offset = 1;
+        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
+        $('li').css({'z-index':'1'});	<span>//Set z-index value back to the default value.</span>
+    }
+});</pre>
+				</div>
+				<p class="indent">Code to animate each "li" in one at a time. I use a CSS @keyframes animation set with transform values to get desired animation effect.</p>
+				<div class="code-text">
+					<pre><span>//"list" should be set to the list you wish to animate in.</span>
+<span>//"index" should be set to 0.</span>
+<span>//"interval" should be set to the time each list item comes into view in milliseconds.</span>
+function listIn (list, index, interval) {
+    if(index < list.length) {
+        $(list[index++]).addClass('fall-in').css({'opacity':'1'}).delay(2000).queue(function(next){
+                $(this).removeClass('fall-in');
+                next();
+        });
+        setTimeout(function () {
+            listIn(list, index, interval);
+        }, interval);
+    }
+}</pre>
+				</div>
+				<h3>CSS</h3>
+				<p class="indent">This is the CSS @keyframes animation set to each class of "child-3d" on list item view. <a href="http://caniuse.com/#feat=css-animation">Click here for animation compatibility information.</a></p>
+				<div class="code-text">
+					<pre>@keyframes fallIn {
+    0%{
+    	transform: rotateY(90deg) rotateX(-45deg) scale(0);
+    }
+    100%{
+    	transform: rotateY(0deg) rotateX(0deg) scale(1);
+    }
+}
+<span>//Be sure to set the animation property for each browser for all browser support.</span>
+.fall-in {
+    -webkit-animation: fallIn 2s forwards;
+    animation: fallIn 2s forwards;
+}</pre>
+				</div>
+				<h3>Compatibility</h3>
+				<p>The CSS transform property was added with the newer CSS3 update and is not suported with all browsers (yet), so measures must be taken to combat this. Make sure to read the compatibility links provided and use the proper calls for each browser you wish to support IE (-webkit-transform: value;). As well as the transform property the animation property is a newer addition and the proper calls must be taken to combat compatibility issues.<br><a href="http://caniuse.com/#search=transform">Transform compatibility information.</a><br><a href="http://caniuse.com/#search=animation">Animation compatibility information.</a></p>
 			</div>
 			<div class=" footer">
 			</div>
