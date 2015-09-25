@@ -5,7 +5,15 @@ $(window).load(function(){
 $(document).ready(function(){
 
     $('li').on('click', function(){
-        $(this).addClass('fall-out');
+        $(this).addClass('fall-out').delay(2000).queue(function(next){
+            $(this).addClass('fall-in').removeClass('fall-out');
+            next();
+        });
+    });
+
+    $('.main-content button').on('click', function(){
+        $('.child-3d').css({'opacity':'0'});
+        listIn($('li .child-3d'), 0, 500);
     });
 
     
@@ -64,4 +72,9 @@ $(document).mousemove(function(e){
         $('li').css({'z-index':'1'});
     }
 });
+
+
+
+
+
 

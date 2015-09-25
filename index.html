@@ -17,9 +17,12 @@
 				<h4><span>Note:</span> Using the CSS transform property will not work in some older browsers. <a href="http://caniuse.com/#search=transform">Click here for compatibility information.</a></h4>
 				<p class="indent">First we need to add the HTML element that we would like to animate. I used a "ul" element and wanted any content within the "li" to be animated. We need to create a parent item for our animated element, I used a class of "parent-3d" for my parent "div" element. After we have the parent we need to add our animated element within our "parent-3d" class.</p>
 				<p class="indent">In order to get a 3d effect on our element using the CSS transform property we need to add a "perspective: value;" to our "parent-3d" class. The value should be set to the size of the element being animated</p>
+				<p><br>Hover over each menu item to see the responsive 3d animation.<br>Click on each item to see a falling animation.</p>
+				<button>Click here to see opening animation</button>
+				<p>Animate anything! (logos, icons, pictures, text etc...)</p>
 				<ul>
 					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
-					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"><p>Move your cursor over me to see a responsive 3d animation.<br>Click me to see a falling animation.</p></div></div></li>
 					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
 				</ul>
 			</div>
@@ -130,7 +133,7 @@ function listIn (list, index, interval) {
 }</pre>
 				</div>
 				<h3>Compatibility</h3>
-				<p>The CSS transform property was added with the newer CSS3 update and is not suported with all browsers (yet), so measures must be taken to combat this. Make sure to read the compatibility links provided and use the proper calls for each browser you wish to support IE (-webkit-transform: value;). As well as the transform property the animation property is a newer addition and the proper calls must be taken to combat compatibility issues.<br><a href="http://caniuse.com/#search=transform">Transform compatibility information.</a><br><a href="http://caniuse.com/#search=animation">Animation compatibility information.</a></p>
+				<p class="indent">The CSS transform property was added with the newer CSS3 update and is not suported with all browsers in use today (yet), so measures must be taken to combat this. Make sure to read the compatibility links provided and use the proper calls for each browser you wish to support IE (-webkit-transform: value;). As well as the transform property the animation property is a newer addition and the proper calls must be taken to combat compatibility issues.<br><a href="http://caniuse.com/#search=transform">Transform compatibility information.</a><br><a href="http://caniuse.com/#search=animation">Animation compatibility information.</a></p>
 			</div>
 			<div class=" footer">
 			</div>

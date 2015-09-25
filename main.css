@@ -76,6 +76,16 @@ body {
     margin-bottom: 20px; }
   .main-content span {
     color: #f00; }
+  .main-content button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #333;
+    color: #fff;
+    margin-bottom: 20px; }
+    .main-content button:hover {
+      cursor: pointer;
+      background: #777; }
 
 .code {
   width: 1000px;
@@ -95,7 +105,7 @@ body {
     padding: 20px;
     border-radius: 10px; }
   .code pre {
-    color: #fff;
+    color: #b2ffb2;
     font-size: 14px;
     overflow: auto; }
     .code pre span {
@@ -119,7 +129,8 @@ li {
   display: inline-block;
   text-align: center;
   margin: 10px;
-  z-index: 1; }
+  z-index: 1;
+  vertical-align: top; }
   @media screen and (max-width: 800px) {
     li {
       display: block;
@@ -134,13 +145,11 @@ li:nth-child(1) .child-3d {
   background: url(images/facebook.png);
   background-size: 100% 100%; }
 
-li:nth-child(2) .child-3d {
-  background: url(images/twitter.png);
-  background-size: 100% 100%; }
-
 li:nth-child(3) .child-3d {
-  background: url(images/youtube.png);
-  background-size: 100% 100%; }
+  background: url(images/jam.jpg);
+  background-size: 100% 100%;
+  border-radius: 20px;
+  box-shadow: 1px 1px 10px 2px #000; }
 
 .child-3d {
   opacity: 0;
@@ -151,19 +160,16 @@ li:nth-child(3) .child-3d {
   border-radius: 3px;
   z-index: 1; }
   .child-3d:hover {
-    background: rgba(0, 0, 0, 0.7);
-    transition: background 0.2s ease-in; }
+    cursor: pointer; }
     .child-3d:hover p {
       color: #fff;
       transition: color 0.2s ease-in; }
   .child-3d p {
-    position: relative;
-    color: #ddd;
-    top: 70px;
-    font-size: 50px;
+    font-size: 25px;
     font-family: "Open Sans",Sans-serif,Helvetica,Arial,sans-serif;
     pointer-events: none;
-    text-shadow: 1px 1px 5px #000; }
+    text-shadow: 1px 1px 5px #000;
+    margin-top: 10px; }
 
 h1 {
   color: #fff;
