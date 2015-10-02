@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Pro Site</title>
+		<title>Front End Jedi</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
 	    <link rel="stylesheet" href="main.css" type='text/css'/>
 	    <link href='https://fonts.googleapis.com/css?family=Open+Sans:500|Open+Sans+Condensed:300|Abel'rel='stylesheet' type='text/css'/>
@@ -9,36 +9,38 @@
 	<body>
 		<div class="page-wrap">
 			<div class="header">
-			<h1>Front End Web Tricks</h1>
+			<h1></h1>
+			<div class="lightsaber"></div>
+			<div class="light saber"></div>
 			</div>
 			<div class="main-content">
-				<h2>Animated and Interactive Element/List</h2>
-				<h3>Using JQuery/Javascript and CSS transform property to make an animated and interactive element/list.</h3>
+				<h2>Animated and Interactive Elements</h2>
+				<h3>Using JQuery/Javascript along with the CSS transform property to make animated and interactive elements</h3>
+				<ul>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
+				</ul>
+				<p><br>Hover over each menu item to see the responsive 3d animation.<br>Click on each item to see a falling animation.</p>
+				<button>Click here to see opening animation</button>
 				<h4><span>Note:</span> Using the CSS transform property will not work in some older browsers. <a href="http://caniuse.com/#search=transform">Click here for compatibility information.</a></h4>
 				<p class="indent">First we need to add the HTML element that we would like to animate. I used a "ul" element and wanted any content within the "li" to be animated. We need to create a parent item for our animated element, I used a class of "parent-3d" for my parent "div" element. After we have the parent we need to add our animated element within our "parent-3d" class.</p>
 				<p class="indent">In order to get a 3d effect on our element using the CSS transform property we need to add a "perspective: value;" to our "parent-3d" class. The value should be set to the size of the element being animated</p>
-				<p><br>Hover over each menu item to see the responsive 3d animation.<br>Click on each item to see a falling animation.</p>
-				<button>Click here to see opening animation</button>
-				<p>Animate anything! (logos, icons, pictures, text etc...)</p>
-				<ul>
-					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
-					<li><div class="parent-3d"><div class="child-3d"><p>Move your cursor over me to see a responsive 3d animation.<br>Click me to see a falling animation.</p></div></div></li>
-					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
-				</ul>
 			</div>
 			<div class="code">
 				<h3>HTML</h3>
 				<div class="code-text">
 					<pre>&ltul&gt
-   &ltli&gt&ltdiv class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/div&gt&lt;/li&gt
-   &ltli&gt&ltdiv class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/div&gt&lt;/li&gt
-   &ltli&gt&ltdiv class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/div&gt&lt;/li&gt
+   &ltli class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/li&gt
+   &ltli class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/li&gt
+   &ltli class="parent-3d"&gt&ltdiv class="child-3d"&gt&lt;/div&gt&lt;/li&gt
 &lt;/ul&gt
 					</pre>
 				</div>
 			</div>
 			<div class="code">
-				<h3>CSS/SASS</h3>
+				<h3>CSS</h3>
 				<div class="code-text">
 					<pre>.parent-3d {
     perspective: 200px;
@@ -65,36 +67,27 @@ $(document).mousemove(function(e){
     var offset;
     var divXpos;
     var divYpos;
-    offset = $(e.target).parent().offset();
-    if($(e.target).parent().attr('class') == "parent-3d"){
-         divPos = {
+    if($(e.target).attr('class') == "child-3d"){
+        offset = $(e.target).parent().offset();
+        divPos = {
             left: e.pageX - offset.left,
             top: e.pageY - offset.top
         };
-        if(divPos.left&ltboxSize && divPos.top&ltboxSize){
-            if(divPos.left>0 && divPos.top>0){
-                if(divPos.top>boxSize/2){
-                    divXpos = (divPos.top-boxSize/2)/(boxSize/30);
-                    divYpos = -(divPos.left-boxSize/2)/(boxSize/30);
-                }else{
-                    divXpos = -((boxSize/2)-divPos.top)/(boxSize/30);
-                    divYpos = ((boxSize/2)-divPos.left)/(boxSize/30);
-                }
-                $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-                $(e.target).parents('li').css({'z-index':'10'});	<span>//Set z-index greater than the default value.</span>
-                $(e.target).css({'transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')','opacity':'1'});
-            }else{
-                $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-                $('li').css({'z-index':'1'});	<span>//Set z-index value back to the default value.</span>
-            }
+        if(divPos.top>boxSize/2){
+            divXpos = (divPos.top-boxSize/2)/(boxSize/scale3d);
+            divYpos = -(divPos.left-boxSize/2)/(boxSize/scale3d);
         }else{
-            $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-            $('li').css({'z-index':'1'});	<span>//Set z-index value back to the default value.</span>
+            divXpos = -((boxSize/2)-divPos.top)/(boxSize/scale3d);
+            divYpos = ((boxSize/2)-divPos.left)/(boxSize/scale3d);
         }
+        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)','-webkit-transform':'rotateY(0deg) rotateX(0deg)'});
+        $('li').css({'z-index':'1'});
+        $(e.target).parents('li').css({'z-index':'10'});
+        $(e.target).css({'transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')',
+            ' -webkit-transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')'});
     }else{
-        offset = 1;
-        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-        $('li').css({'z-index':'1'});	<span>//Set z-index value back to the default value.</span>
+        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)','-webkit-transform':'rotateY(0deg) rotateX(0deg)'});
+        $('li').css({'z-index':'1'});
     }
 });</pre>
 				</div>

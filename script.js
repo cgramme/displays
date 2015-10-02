@@ -1,5 +1,6 @@
 $(window).load(function(){
     listIn($('li .child-3d'), 0, 500);
+    setTimeout(function(){$('.light').addClass('saber-fade');},3000);
 });
 
 $(document).ready(function(){
@@ -40,35 +41,26 @@ $(document).mousemove(function(e){
     var offset;
     var divXpos;
     var divYpos;
-    offset = $(e.target).parent().offset();
-    if($(e.target).parent().attr('class') == "parent-3d"){
-         divPos = {
+    if($(e.target).attr('class') == "child-3d"){
+        offset = $(e.target).parent().offset();
+        divPos = {
             left: e.pageX - offset.left,
             top: e.pageY - offset.top
         };
-        if(divPos.left<boxSize && divPos.top<boxSize){
-            if(divPos.left>0 && divPos.top>0){
-                if(divPos.top>boxSize/2){
-                    divXpos = (divPos.top-boxSize/2)/(boxSize/30);
-                    divYpos = -(divPos.left-boxSize/2)/(boxSize/30);
-                }else{
-                    divXpos = -((boxSize/2)-divPos.top)/(boxSize/30);
-                    divYpos = ((boxSize/2)-divPos.left)/(boxSize/30);
-                }
-                $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-                $(e.target).parents('li').css({'z-index':'10'});
-                $(e.target).css({'transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')','opacity':'1'});
-            }else{
-                $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-                $('li').css({'z-index':'1'});
-            }
+        if(divPos.top>boxSize/2){
+            divXpos = (divPos.top-boxSize/2)/(boxSize/scale3d);
+            divYpos = -(divPos.left-boxSize/2)/(boxSize/scale3d);
         }else{
-            $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
-            $('li').css({'z-index':'1'});
+            divXpos = -((boxSize/2)-divPos.top)/(boxSize/scale3d);
+            divYpos = ((boxSize/2)-divPos.left)/(boxSize/scale3d);
         }
+        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)','-webkit-transform':'rotateY(0deg) rotateX(0deg)'});
+        $('li').css({'z-index':'1'});
+        $(e.target).parents('li').css({'z-index':'10'});
+        $(e.target).css({'transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')',
+            ' -webkit-transform':'rotateY('+divYpos+'deg) rotateX('+divXpos+'deg) scale('+scaleSize+')'});
     }else{
-        offset = 1;
-        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)'});
+        $('.child-3d').css({'transform':'rotateY(0deg) rotateX(0deg)','-webkit-transform':'rotateY(0deg) rotateX(0deg)'});
         $('li').css({'z-index':'1'});
     }
 });
