@@ -11,7 +11,7 @@ html {
   height: 100%; }
 
 body {
-  background: url(images/black_background2.jpg) repeat; }
+  background: url(images/stars2.jpg) repeat; }
 
 @keyframes fallIn {
   0% {
@@ -86,15 +86,23 @@ body {
   animation: stage 1s forwards; }
 
 @keyframes saber {
-  from {
-    width: 0; }
-  to {
-    width: 600px; } }
+  0% {
+    width: 0;
+    background: #0f0;
+    box-shadow: 50px 0 100px 40px #6ff, 5px 0 10px 2px #0ff; }
+  100% {
+    width: 600px;
+    background: #0f0;
+    box-shadow: 5px 0 20px 2px #0f0, 5px 0 10px 2px #0ff; } }
 @-webkit-keyframes saber {
-  from {
-    width: 0; }
-  to {
-    width: 600px; } }
+  0% {
+    width: 0;
+    background: #0f0;
+    box-shadow: 50px 0 100px 40px #6ff, 5px 0 10px 2px #0ff; }
+  100% {
+    width: 600px;
+    background: #0f0;
+    box-shadow: 5px 0 20px 2px #0f0, 5px 0 10px 2px #0ff; } }
 .saber {
   -webkit-animation: saber 1.5s forwards;
   animation: saber 1.5s forwards; }
@@ -118,10 +126,10 @@ body {
   margin: 50px auto; }
   .header h1 {
     margin: 0 auto 20px auto;
-    background: url(images/logo2.png);
+    background: url(images/logo3.png);
     background-size: 100% 100%;
-    height: 60px;
-    width: 400px; }
+    height: 80px;
+    width: 600px; }
   .header .lightsaber {
     position: relative;
     left: 0px;
@@ -133,6 +141,7 @@ body {
     z-index: 10;
     display: inline-block; }
   .header .light {
+    opacity: 0;
     display: inline-block;
     position: relative;
     left: -20px;
@@ -143,6 +152,33 @@ body {
     background: #0f0;
     box-shadow: 5px 0 20px 2px #0f0, 5px 0 10px 2px #0ff;
     z-index: 1; }
+
+.menu {
+  width: 1000px;
+  height: 50px;
+  margin: 0 auto 20px auto;
+  background: rgba(26, 26, 26, 0.5);
+  padding: 5px 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 1px #000; }
+  .menu ul {
+    text-align: center; }
+    .menu ul li {
+      perspective: 70px;
+      display: inline-block;
+      padding: 10px 100px;
+      margin: 0;
+      height: 20px; }
+      .menu ul li:hover {
+        cursor: pointer; }
+        .menu ul li:hover p {
+          color: #fff;
+          text-shadow: 0 0 5px #cc6;
+          transform: rotateX(30deg) scale(1.2);
+          transition: color 0.5s ease-in, transform 0.5s ease-in, text-shadow 0.5s ease-in; }
+      .menu ul li p {
+        color: #fff;
+        font-size: 25px; }
 
 .main-content {
   width: 1000px;
@@ -203,7 +239,7 @@ body {
     .code pre span {
       color: #999; }
 
-ul {
+.transform3d {
   margin-top: 10px;
   background: #111;
   padding: 20px;
@@ -211,55 +247,55 @@ ul {
   border-radius: 10px;
   display: block;
   box-shadow: 1px 1px 1px 0px #fff, inset 1px 1px 1px 0px #000; }
-
-li {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
-  text-align: center;
-  margin: 10px;
-  z-index: 1;
-  vertical-align: top; }
-
-.parent-3d {
-  position: relative;
-  perspective: 200px; }
-
-li:nth-child(1) .child-3d {
-  background: url(images/chrome.png);
-  background-size: 100% 100%; }
-
-li:nth-child(2) .child-3d {
-  background: url(images/moz.png);
-  background-size: 100% 100%; }
-
-li:nth-child(3) .child-3d {
-  background: url(images/ie.png);
-  background-size: 100% 100%; }
-
-li:nth-child(4) .child-3d {
-  background: url(images/opera.png);
-  background-size: 100% 100%; }
-
-.child-3d {
-  opacity: 0;
-  width: 200px;
-  height: 200px;
-  position: relative;
-  background-size: 100% 100%;
-  z-index: 1; }
-  .child-3d:hover {
-    cursor: pointer; }
-    .child-3d:hover p {
-      color: #fff;
-      transition: color 0.2s ease-in; }
-  .child-3d p {
-    font-size: 25px;
-    font-family: "Open Sans",Sans-serif,Helvetica,Arial,sans-serif;
-    pointer-events: none;
-    text-shadow: 1px 1px 5px #000;
-    margin-top: 10px; }
+  .transform3d li {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    z-index: 1;
+    vertical-align: top; }
+  .transform3d .parent-3d {
+    perspective: 200px;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    z-index: 1;
+    vertical-align: top; }
+  .transform3d li:nth-child(1) .child-3d {
+    background: url(images/chrome.png);
+    background-size: 100% 100%; }
+  .transform3d li:nth-child(2) .child-3d {
+    background: url(images/moz.png);
+    background-size: 100% 100%; }
+  .transform3d li:nth-child(3) .child-3d {
+    background: url(images/ie.png);
+    background-size: 100% 100%; }
+  .transform3d li:nth-child(4) .child-3d {
+    background: url(images/opera.png);
+    background-size: 100% 100%; }
+  .transform3d .child-3d {
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    background-size: 100% 100%;
+    z-index: 1; }
+    .transform3d .child-3d:hover {
+      cursor: pointer; }
+      .transform3d .child-3d:hover p {
+        color: #fff;
+        transition: color 0.2s ease-in; }
+    .transform3d .child-3d p {
+      font-size: 25px;
+      font-family: "Open Sans",Sans-serif,Helvetica,Arial,sans-serif;
+      pointer-events: none;
+      text-shadow: 1px 1px 5px #000;
+      margin-top: 10px; }
 
 p {
   color: #fff;

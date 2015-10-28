@@ -9,14 +9,21 @@
 	<body>
 		<div class="page-wrap">
 			<div class="header">
-			<h1></h1>
-			<div class="lightsaber"></div>
-			<div class="light saber"></div>
+				<h1></h1>
+				<div class="lightsaber"></div>
+				<div class="light"></div>
+			</div>
+			<div class="menu">
+				<ul>
+					<li><p>About</p></li>
+					<li><p>Share your idea</p></li>
+					<li><p>Contact</p></li>
+				</ul>
 			</div>
 			<div class="main-content">
 				<h2>Animated and Interactive Elements</h2>
 				<h3>Using JQuery/Javascript along with the CSS transform property to make animated and interactive elements</h3>
-				<ul>
+				<ul class="transform3d">
 					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
 					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
 					<li><div class="parent-3d"><div class="child-3d"></div></div></li>
@@ -119,14 +126,14 @@ function listIn (list, index, interval) {
     	transform: rotateY(0deg) rotateX(0deg) scale(1);
     }
 }
-<span>//Be sure to set the animation property for each browser for all browser support.</span>
+<span>//Be sure to set the animation property with the correct prefix's for optimal browser support.</span>
 .fall-in {
     -webkit-animation: fallIn 2s forwards;
     animation: fallIn 2s forwards;
 }</pre>
 				</div>
 				<h3>Compatibility</h3>
-				<p class="indent">The CSS transform property was added with the newer CSS3 update and is not suported with all browsers in use today (yet), so measures must be taken to combat this. Make sure to read the compatibility links provided and use the proper calls for each browser you wish to support IE (-webkit-transform: value;). As well as the transform property the animation property is a newer addition and the proper calls must be taken to combat compatibility issues.<br><a href="http://caniuse.com/#search=transform">Transform compatibility information.</a><br><a href="http://caniuse.com/#search=animation">Animation compatibility information.</a></p>
+				<p class="indent">The CSS transform3d property was added with the newer CSS3 update and is not suported with all browsers in use today, so measures must be taken to combat this. Make sure to read the compatibility links provided and use the proper prefix's for each browser you wish to support IE (-webkit-transform: value;). As well as the transform property the animation property needs the proper prefix's to combat compatibility issues.<br><a href="http://caniuse.com/#search=transform">Transform compatibility information.</a><br><a href="http://caniuse.com/#search=animation">Animation compatibility information.</a></p>
 			</div>
 			<div class=" footer">
 			</div>
