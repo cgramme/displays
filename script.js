@@ -1,4 +1,5 @@
 $(window).load(function(){
+    $('.page-wrap').addClass('fade-in');
     listIn($('li .child-3d'), 0, 500);
     setTimeout(function(){$('.light').css({"opacity":"1"}).addClass('saber');},500);
     setTimeout(function(){$('.light').addClass('saber-fade');},3000);
