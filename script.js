@@ -1,8 +1,11 @@
 $(window).load(function(){
     $('.page-wrap').addClass('fade-in');
-    listIn($('li .child-3d'), 0, 500);
-    setTimeout(function(){$('.light').css({"opacity":"1"}).addClass('saber');},500);
-    setTimeout(function(){$('.light').addClass('saber-fade');},3000);
+    setTimeout(function(){$('.light').css({"opacity":"1"}).addClass('saber').delay(2500).queue(function(next){
+            $('.light').addClass('saber-fade');
+            next();
+        });
+    },1000);
+    setTimeout(function(){listIn($('li .child-3d'), 0, 500);}, 1000);
 });
 
 $(document).ready(function(){

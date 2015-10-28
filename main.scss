@@ -91,8 +91,8 @@ body {
     to{opacity: 1}
 }
 .fade-in {
-    -webkit-animation: fadeIn 0.5s forwards;
-    animation: fadeIn 0.5s forwards;
+    -webkit-animation: fadeIn 2s forwards;
+    animation: fadeIn 2s forwards;
 }
 
 @keyframes stage {
@@ -130,7 +130,7 @@ body {
     0% {
     	width: 0;
     	background: #0f0;
-    	box-shadow: 50px 0 100px 40px #6ff, 5px 0 10px 2px #0ff;
+    	box-shadow: 50px 0 100px 40px #6ff;
     }
     100% {
     	width: 600px;
@@ -139,8 +139,8 @@ body {
     }
 }
 .saber {
-    -webkit-animation: saber 1.5s forwards;
-    animation: saber 1.5s forwards;
+    -webkit-animation: saber 2s forwards;
+    animation: saber 2s forwards;
 }
 
 @keyframes saberFade {
@@ -214,7 +214,7 @@ body {
 		    	p {
 		    		color: #fff;
 					text-shadow: 0 0 5px #cc6;
-					transform: rotateX(30deg) scale(1.2);
+					transform: rotateX(10deg) scale(1.2);
 			    	transition: color 0.5s ease-in, transform 0.5s ease-in, text-shadow 0.5s ease-in;
 		    	}
 			}
